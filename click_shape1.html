@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click shape</title>
+    <style>
+        #rectangle {
+            font-size: 20pt;
+  width: 100px;
+  height: 70px;
+  background: red;
+  position:relative;
+  left:0px;
+  top:0px;
+  text-align:center;
+}
+.box{
+    top: 0;
+    border: 2px solid;
+    height: 500px;
+  width: 1000px;
+    
+}
+    </style>
+
+</head>
+
+<body>
+    <p id='demo'> </p>
+    <div class="box" onclick="start()">
+       
+        <div id="rectangle"> <b>0 </b></div>
+
+    </div>
+
+    <script>
+
+        var button =  document.getElementById("rectangle"),count=0;
+        
+            function driver () {
+                pos();
+                color();
+                count+=1;
+                button.innerHTML= count;
+        }
+        button.onclick =  driver;
+
+        function numberRandomizer(){
+                var x = Math.floor((Math.random() * 200) + 150); 
+                return x;
+            }
+
+        function pos(){
+                var left = numberRandomizer(),right = numberRandomizer();
+                document.getElementById('rectangle').style.left=left+"px";  
+                document.getElementById('rectangle').style.top=right+"px";
+            }
+
+        function color() {
+                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                document.getElementById('rectangle').style.background = "#" + randomColor;
+                color.innerHTML = "#" + randomColor;
+            }
+
+           
+        var seconds =10;
+       
+        var x = setInterval(function() { 
+        seconds-=1;
+        document.getElementById("demo").innerHTML =  seconds + "s ";
+            
+        if (seconds <= 0) {
+            document.getElementById("rectangle").style.display = "none"
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "Times Up. "+ " Total Clicks: "+count;
+            }
+        }, 1000);
+    
+
+    </script>
+
+
+</body>
+</html>
