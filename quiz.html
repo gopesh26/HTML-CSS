@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+
+    <style>
+     body{
+         position:absolute;
+         right: 500px;
+     }
+      .photo_div{
+         padding: 15px;
+         padding-bottom: 2px;
+          align-items:justify;
+          
+          border-radius: 3px;
+          width:300px;
+          height:350px;
+                    
+      }
+    </style>
+</head>
+
+<body>
+    
+    <header style="display: block;">
+        <h1 style="font-family:sans-serif;">Guess movie names</h1>
+        
+    </header>
+    <br>
+    
+    <div class="photo_div">
+
+        <img src="bp.jpg" style="width:100%; ">
+        
+    </div>
+    <div class="photo_div">
+
+        <img src="avatar.jpg" style="width:100%; ">
+        
+    </div>
+    <div class="photo_div">
+
+        <img src="joker.jpg" style="width:100%; ">
+   
+    </div>
+    <br><br>
+
+    <div style="width:300px;height: 550px; padding-left: 15px;">
+        <form>
+            <input type='text' id="ans" placeholder='Write your answer' onfocus="this.value=''">
+            <input type='button'  onclick="answer(slidesIndex)" value="Submit" >
+            
+            <span id='message'></span>
+        </form>
+        <span id="demo"> </span>
+    </div>
+
+
+
+    <script>
+        var seconds=10;
+        var slidesIndex = 0;
+        var count =0;
+        var t;
+       
+
+        show()
+
+        function show(){
+            var i ;
+            var slide = document.getElementsByClassName("photo_div");
+            for (i=0; i<slide.length; i++){
+                slide[i].style.display='none';
+            }
+
+            slidesIndex++;
+           
+            if (slidesIndex> slide.length){slidesIndex=1}
+            
+            slide[slidesIndex-1].style.display="block";
+           // console.log(slidesIndex);
+
+            start();           
+            if (slidesIndex==3){stop(t);}
+
+            document.getElementById('message').innerHTML = ' ';
+        }
+
+        function start(){
+           
+             t=  setTimeout(show,10000);
+            
+            return t 
+        }
+
+        function stop(t){
+            clearTimeout(t);
+        }
+
+        function answer(slidesIndex){
+            var answer = document.getElementById("ans").value.toLowerCase();
+               
+            
+            if(slidesIndex==1){
+                if (answer =="black panther"){
+                    count++;
+                    document.getElementById('message').style.color = 'Black';
+                    document.getElementById('message').innerHTML = 'Correct';
+                }
+                else{
+                    document.getElementById('message').style.color = 'Black';
+                    document.getElementById('message').innerHTML = 'Wrong';
+                }
+            }
+
+            else if (slidesIndex==2){
+                if (answer =="avatar"){
+                    count++;
+                    document.getElementById('message').style.color = 'blue';
+                    document.getElementById('message').innerHTML = 'Correct';
+                 }
+                else{
+                    document.getElementById('message').style.color = 'blue';
+                     document.getElementById('message').innerHTML = 'Wrong';
+                }
+           }
+
+            else{
+                if (answer=="joker"){
+                    count++
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'Correct';
+                }
+                else{
+                    document.getElementById('message').style.color = 'Black';
+                    document.getElementById('message').innerHTML = 'Wrong';
+                }
+            }
+        
+        }   
+    </script>
+</body>
+</html>
